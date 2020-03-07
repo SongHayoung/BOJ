@@ -1,38 +1,34 @@
+#pragma optimize("O3")
+# pragma GCC optimize ("Ofast")
+# pragma GCC optimize ("unroll-loops")
+# pragma GCC target("sse,sse2,sse3,ssse3,sse4,avx,avx2")
 #include <stdio.h>
 #define gc() getchar_unlocked()
-int arr[100000];
-int N, M;
-int fastREADINT() {
-	int ret = 0, flag = 1, N=gc();
-	for(;'0'>N||N>'9';N=gc())
-		if (N == '-') {
-			flag = -1;
-			N = gc(); break;
-		}
-	for (; '0' <= N && N <= '9'; N = gc())
-		ret = (ret << 3) + (ret << 1) + (N & 0b1111);
-	return ret * flag;
+#define MID(a,b) (((a)+(b))>>1)
+#define REP(i,a,b) for(int i = a; i < b; i++)
+#define FRI1(i) for(;48>i||57>i;i=gc());
+#define ull unsigned long long
+#define reg register
+#define pf(a) printf("%llu",a);
+#define IF(a,b) (((a)>=(b)) ? (1) : (0))
+#define FFF(a,b) ((a<<3)+(a<<1)+(b&0b1111));
+int K[100000];
+int fRI(){
+	int ret = 0, N = gc();
+	for (; 0x30>N || N>0x3A; N = gc());
+	for (; 0x30 <= N && N <= 0x3A; N = gc()) ret = FFF(ret, N)
+	return ret;
 }
-int main(int argc, char** argv){
-	register int i;
-	N = fastREADINT();
-	M = fastREADINT();
-	for (i = 0; i < N; i++)
-		arr[i] = fastREADINT();
-	long long left = 1, right, mid, sum, ans;
-	right = ans = 1000000000000000000LL;
-	while (left <= right) {
-		mid = (left + right) >> 1;
+int main(int argc, char** argv) {
+	reg int i, N = fRI(), M = fRI();
+	REP(i,0,N) K[i] = fRI();
+	reg ull left = 1, right = 0xfffffffffffffff, mid, sum;
+	while (left!=right) {
+		mid = MID(left, right);
 		sum = 0;
-		for (i = 0; i < N; i++)
-			sum += mid / arr[i];
-		if (sum >= M) {
-			right = mid - 1;
-			ans = ans > mid ? mid : ans;
-		}
-		else
-			left = mid + 1;
+		REP(i, 0, N) if (IF(sum += mid / K[i],M)) break;
+		IF(sum,M) ? right = mid : left = mid + 1;
 	}
-	printf("%ld", ans);
+	pf(left)
 	return 0; //정상종료시 반드시 0을 리턴해야 합니다.
 }
