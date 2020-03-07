@@ -4,7 +4,7 @@
 # pragma GCC target("sse,sse2,sse3,ssse3,sse4,avx,avx2")
 #include <stdio.h>
 #define gc() getchar_unlocked()
-#define MID(a,b) (((a)+(b))>>1)
+#define MID(a,b) ((a)+((b-a)>>1))
 #define REP(i,a,b) for(int i = a; i < b; i++)
 #define FRI1(i) for(;48>i||57>i;i=gc());
 #define ull unsigned long long
