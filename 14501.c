@@ -28,9 +28,7 @@ int main(int argc, char** argv){
     s Ti[16], Pi[16], DP[17] = {0};
     for(reg s i = 0;i < N; i++)
         Ti[i] = fRS(), Pi[i] = fRS();
-    for(reg s i = N-1; i >= 0; i--) {
-        if(i+Ti[i]<=N) DP[i] = DP[i+Ti[i]] + Pi[i] > DP[i+1] ? DP[i+Ti[i]] + Pi[i] : DP[i+1];
-        else DP[i] = DP[i+1];
-    }
+    for(reg s i = N-1; i >= 0; i--)
+        DP[i] = i+Ti[i]<=N ? DP[i+Ti[i]] + Pi[i] > DP[i+1] ? DP[i+Ti[i]] + Pi[i] : DP[i+1] : DP[i+1];
     fWS(DP[0]);
 }
