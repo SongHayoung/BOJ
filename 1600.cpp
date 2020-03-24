@@ -27,7 +27,7 @@ int fRI() {
 }
 
 int main(void) {
-    register int i, j, l, answer = NMAX;
+    register int i, j, l;
     struct Monkey m;
     K = fRI(); W = fRI(); H = fRI();
     for (i = 0; i < H; ++i)
@@ -48,8 +48,8 @@ int main(void) {
         q.pop();
         if(visit[y][x][k]!=c) continue;
         if(y==H-1 && x==W-1) {
-            answer = answer > c ? c : answer;
-            continue;
+            printf("%d",c);
+            return 0;
         }
         if(k){
             for(i = 0; i < 8; ++i){
@@ -76,5 +76,6 @@ int main(void) {
             }
         }
     }
-    answer == NMAX ? printf("-1") : printf("%d",answer);
+    printf("-1");
+    return 0;
 }
