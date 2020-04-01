@@ -1,7 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
 int map[10][10][2];
-int b[10][10];
+int b[10][10]; 
 int N, wans = 0, bans = 0;
 int MAXb = 0, MAXw = 0;
 int dx[4] = { -1,1,-1,1 };
