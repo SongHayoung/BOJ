@@ -5,7 +5,7 @@ char cheese[1000][1001];
 int dx[4] = { 0,1,0,-1 };
 int dy[4] = { -1,0,1,0 };
 int sy, sx;
-int time, target = 1;
+int time, target;
 int N, M, H;
 void BFS() {
 	queue<pair<int, int>> q;
@@ -28,7 +28,6 @@ void BFS() {
 					}
 					if (cheese[ny][nx] == (target|0b110000)) {
 						sy = ny, sx = nx;
-						++target;
 						return;
 					}
 				}
@@ -43,6 +42,6 @@ int main() {
 		for (int j = 0; j < M; ++j)
 			if (cheese[i][j] == 'S') sy = i, sx = j;
 	}
-	while (target<=H) BFS();
+	while (++target<=H) BFS();
 	printf("%d", time);
 }
